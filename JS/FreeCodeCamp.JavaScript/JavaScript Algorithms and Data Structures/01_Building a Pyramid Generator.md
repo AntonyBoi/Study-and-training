@@ -457,3 +457,199 @@ Instead of pushing i to the array, push the value of your character variable.
 for (let i = 0; i < count; i = i + 1) {
   rows.push(character);
 }
+
+**Step 45**
+Now you have a series of # characters, but the pyramid shape is still missing. Fortunately, the i variable represents the current "row" number in your loop, enabling you to use it for crafting a pyramid-like structure.
+
+To achieve this, you will use the .repeat() method available to strings. This method accepts a number as an argument, specifying the number of times to repeat the target string. For example, using .repeat() to generate the string "Code! Code! Code!":
+
+Example Code
+const activity = "Code! ";
+activity.repeat(3);
+Use the .repeat() method on your character, and give it i for the number.
+
+const character = "#";
+const count = 8;
+const rows = [];
+
+for (let i = 0; i < count; i = i + 1) {
+  rows.push(character.repeat(i));
+}
+
+// console output
+
+
+#
+##
+###
+####
+#####
+######
+#######
+
+**Step 46**
+You're getting closer! At this point, you're encountering what's known as an off-by-one error, a frequent problem in zero-based indexing languages like JavaScript.
+
+The first index of your rows array is 0, which is why you start your for loop with i = 0. But repeating a string zero times results in nothing to print.
+
+To fix this, add 1 to the value of i in your .repeat() call. Do not assign it back to i like you did in your loop conditions.
+const character = "#";
+const count = 8;
+const rows = [];
+
+for (let i = 0; i < count; i = i + 1) {
+  rows.push(character.repeat(i + 1))
+}
+
+**Step 47**
+The logic for formatting this pyramid is likely going to get complicated, which means it's a great time to extract that code into a function.
+
+A function is a block of code that can be reused throughout your application. Functions are declared with the following syntax:
+
+Example Code
+function name(parameter) {
+
+}
+The function keyword tells JavaScript that the name variable is going to be a function. parameter is a variable that represents a value that is passed into the function when it is used. A function may have as many, or as few, parameters as you'd like. Like a for loop, the space between the curly braces is the function body.
+
+Declare a padRow function. Do not create any parameter variables yet. The function body should be empty. Remember that you need to use camel case for your naming convention.
+
+function padRow() {
+  
+}
+
+**Step 48**
+In order to use a function, you need to call it. A function call tells your application to run the code from the function wherever you choose to call it. The syntax for a function call is the function name followed by parentheses. For example, this code defines and calls a test function.
+
+Example Code
+function test() {
+
+}
+test();
+Call your padRow function.
+
+function padRow() {
+
+}
+padRow();
+
+**Step 49**
+You are calling your padRow function, but not doing anything with that function call. All functions in JavaScript return a value, meaning they provide the defined result of calling them for you to use elsewhere.
+
+To see the result of calling your padRow function, declare a call variable and assign your existing padRow call to that variable.
+const call = padRow();
+
+function padRow() {
+
+}
+const call = padRow();
+console.log(call);
+
+**Step 50** 
+Now add a log statement to print the value of your call variable.
+function padRow() {
+
+}
+const call = padRow();
+console.log(call);
+
+**Step 51**
+Your call variable has an undefined value, even though you defined it! This is because your padRow function does not currently return a value. By default, functions return undefined as their value.
+
+In order to return something else, you need to use the return keyword. Here is an example of a function that returns the string "Functions are cool!":
+
+Example Code
+function demo() {
+  return "Functions are cool!";
+}
+Use the return keyword to have your function return the string "Hello!".
+
+function padRow() {
+return "Hello!"
+}
+
+**Step 52**
+When you have a value that is explicitly written in your code, like the "Hello!" string in your function, it is considered to be hard-coded. Hard-coding a value inside a function might not make it as reusable as you'd like.
+
+Instead, you can define parameters for the function. Parameters are special variables that are given a value when you call the function, and can be used in your function to dynamically change the result of the function's code.
+
+To add a parameter to your function, you need to add a variable name inside the parentheses. For example, this demo function has a name parameter:
+
+Example Code
+function demo(name) {
+
+}
+name sounds like a useful parameter, so go ahead and add it to your padRow function.
+
+function padRow(name) {
+  return "Hello!";
+}
+
+**Step 53**
+A function does not have to return a hard-coded value. It can return the value stored in a variable. Parameters are special variables for a function, so they can also be returned.
+
+Change your padRow function to return the name parameter directly.
+
+function padRow(name) {
+  return name;
+}
+
+**Step 54**
+If you open your console again, you'll see that your padRow function is returning undefined, even though you defined a return value! This is because parameters need to be given a value when you call the function.
+
+When you pass a value to a function call, that value is referred to as an argument. Here is an example of calling a demo function and passing "Naomi" as the argument for the name parameter.
+
+Example Code
+function demo(name) {
+  return name;
+}
+demo("Naomi");
+Pass your own name as the argument for the name parameter in your padRow call. Remember that your name is a string, so you'll need to use quotes.
+
+function padRow(name) {
+  return name;
+}
+const call = padRow("Anton");
+
+
+**Step 55**
+Before moving on, take a moment to review how functions work.
+
+Declare a function named addTwoNumbers. This function should take two arguments and return the sum of those two arguments.
+
+Then declare a sum variable and assign it the value of calling your addTwoNumbers function with 5 and 10 as the arguments. Log the sum variable to the console.
+
+function addTwoNumbers(firstNumber, secondNumber) {
+  return firstNumber + secondNumber;
+}
+const sum = addTwoNumbers(5, 10);
+console.log(sum);
+
+**Step 56**
+With that quick review complete, you should remove your addTwoNumbers function, sum variable, and log statement.
+
+**Step 57**
+Variables in JavaScript are available in a specific scope. In other words, where a variable is declared determines where in your code it can be used.
+
+The first scope is the global scope. Variables that are declared outside of any "block" like a function or for loop are in the global scope. Your character, count, and rows variables are all in the global scope.
+
+When a variable is in the global scope, a function can access it in its definition. Here is an example of a function using a global title variable:
+
+Example Code
+const title = "Professor ";
+function demo(name) {
+  return title + name;
+}
+demo("Naomi")
+This example would return "Professor Naomi". Update your padRow function to return the value of concatenating your character variable to the beginning of the name parameter.
+
+function padRow(name) {
+  return character + name;
+}
+
+**Step 58**
+Variables can also be declared inside a function. These variables are considered to be in the local scope, or block scope. A variable declared inside a function can only be used inside that function. If you try to access it outside of the function, you get a reference error.
+
+To see this in action, use const to declare a test variable in your padRow function. Initialise it with the value "Testing".
+
+Then, below your function, try to log test to the console. You will see an error because it is not defined outside of the function's local scope. Remove that console.log to pass the tests and continue.
