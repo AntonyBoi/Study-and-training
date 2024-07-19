@@ -29,7 +29,7 @@
 * git branch -  показывает текущую ветку (по умолчанию main или master)
 * git branch XXX - создаёт ветку с названием ХХХ(но не переключается на неё)
 * git checkout XXX - переходит в ветку ХХХ
-* git branch --D XXX - удаление ветки
+* git branch -D XXX - удаление ветки
 * git merge XXX - слияние текущей ветки и ветки ХХХ
 
 Файл .gitignore 
